@@ -77,7 +77,12 @@
 				</tr>	
 			{% endfor %}
 		</table>
-		<a>hallo</a>
+		<div style="display: inline-block; position: fixed; margin-top: 20px; ">
+			<form action="/clear/" method="POST" style="background-color:PaleTurquoise; ">
+				<a style="margin-left: 20px">Summe der Bestellung: {{ summe }} €</a>
+				<input style="margin: 20px" type="submit" value="Abschließen">
+			</form>
+		</div>
 	</div>
 </div>
 

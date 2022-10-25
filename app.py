@@ -30,7 +30,7 @@ def Html_table():
     return render_template("index.html", column_names=['name', 'zutat', 'preis', 'aktion'],
                             row_data=list(df.values.tolist()), zip=zip)
 
-
+#add
 @app.route('/add/<int:id>', methods=['POST', 'GET'])
 def Test(id):
     if request.method == 'GET':
@@ -62,7 +62,7 @@ def Test(id):
         tasks = Choice.query.order_by(Choice.id).all()
         return render_template("index.html", row_data2=list(df.values.tolist()), zip=zip)
     
-#delete Task 
+#delete 
 @app.route('/delete/<int:id>')
 def Delete(id):
     task_to_delete = Choice.query.get_or_404(id)
@@ -73,6 +73,16 @@ def Delete(id):
         return redirect('/')
     except:
         return "there was a problem deleting that task"
+
+#finish order    
+@app.route('/clear/', methods=['POST', 'GET'])
+def ClearTable():
+    #TODO: pdf
+    print("droping table choice")
+    conn = sqlite3.connect('instance/menu.db')
+    c = conn.cursor()
+    c.execute('truncate table choice')
+    return redirect('/')
 
 if __name__== "__main__":
     app.run(debug=True)
