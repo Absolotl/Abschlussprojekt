@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Speise.h"
 #include "Speisekarte.h"
 #include "C:\SQLite\sqlite-amalgamation-3390400\sqlite3.h"
 
@@ -19,10 +18,10 @@ int main()
   
     if (exit != SQLITE_OK)
     {
-        std::cerr << "Error Create Table: "<< messaggeError << "\n";
+        std::cerr << "Error creating table: "<< messaggeError << "\n";
         sqlite3_free(messaggeError);
     }
-    else cout << "Table created Successfully!" << std::endl;
+    else cout << "Table created successfully!" << std::endl;
 
     string sqlInsert;
 	for (const auto &arr : menu)
@@ -42,10 +41,10 @@ int main()
     exit = sqlite3_exec(DB, sqlInsert.c_str(), NULL, 0, &messaggeError);
     if (exit != SQLITE_OK)
     {
-        std::cerr << "Error Insert: "<< messaggeError << "\n";
+        std::cerr << "Error inserting values: "<< messaggeError << "\n";
         sqlite3_free(messaggeError);
     }
-    else cout << "Records created Successfully!" << std::endl;
+    else cout << "Values created successfully!" << std::endl;
   
     sqlite3_close(DB);
 	return 0;
