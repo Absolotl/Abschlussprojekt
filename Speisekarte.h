@@ -1,4 +1,4 @@
-using std::string; using std::vector;
+using std::string; using std::cout; using std::vector;
 
 struct speise
 {

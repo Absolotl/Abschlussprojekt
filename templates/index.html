@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Speisekarte</title>
+{% endblock %}
+
+{% block body %}
+<div style="margin-left: 50px; margin-right: 50px; background-color:whitesmoke;">
+	<table style="display: inline-block; margin: 10px;">
+		<tr><th colspan="4">Speisekarte</th></tr>
+		<tr>
+			{% for col in column_names %}
+				<th>{{col}}</th>
+			{% endfor %}
+		</tr>
+		{% for row in row_data %}
+			{% if row[0] == 0 %}
+			<tr><td colspan="4" style="background-color:yellow">Für unsere kleinen Gäste</td></tr>
+			{% endif %}
+			{% if row[0] == 5 %}
+			<tr><td colspan="4" style="background-color:yellow">Vom Schwein</td></tr>
+			{% endif %}
+			{% if row[0] == 7 %}
+			<tr><td colspan="4" style="background-color:yellow">Vom Kalb</td></tr>
+			{% endif %}
+			{% if row[0] == 9 %}
+			<tr><td colspan="4" style="background-color:yellow">Vom Rind</td>
+			{% endif %}
+			{% if row[0] == 10 %}
+			<tr><td colspan="4" style="background-color:yellow">Fisch</td></tr>
+			{% endif %}
+			{% if row[0] == 12 %}
+			<tr><td colspan="4" style="background-color:yellow">Nudeln</td></tr>
+			{% endif %}
+			{% if row[0] == 39 %}
+			<tr><td colspan="4" style="background-color:yellow">Pizza</td></tr>
+			{% endif %}
+			{% if row[0] == 101 %}
+			<tr><td colspan="4" style="background-color:yellow">Salate</td></tr>
+			{% endif %}
+			{% if row[0] == 108 %}
+			<tr><td colspan="4" style="background-color:yellow">Omelettes</td></tr>
+			{% endif %}
+			{% if row[0] == 110 %}
+			<tr><td colspan="4" style="background-color:yellow">Vorspeisen</td></tr>
+			{% endif %}
+			{% if row[0] == 115 %}
+			<tr><td colspan="4" style="background-color:yellow">Suppen</td></tr>
+			{% endif %}
+			<tr>        
+				<td>{{row[1]}}</td>			
+				<td>{{row[2]}}</td>
+				<td>{{row[3]}}0 €</td>
+				<td><a href="/add/{{row[0]}}">Hinzufügen</a></td>
+			</tr>	
+		{% endfor %}
+	</table>
+	<div style="display: inline-block; position: fixed; margin: 10px; margin-left: 20px; ">
+		<table>
+			<tr>
+				<th colspan="4">Auswahl</th>
+			</tr>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Bezeichnung</th>
+				<th>Preis</th>
+				<th>Aktion</th>
+			</tr>
+			{% for row in row_data2 %}
+				<tr>
+					<td>{{row[0]}}</td>
+					<td>{{row[1]}}</td>			
+					<td>{{row[2]}}</td>
+					<td>{{row[3]}}0 €</td>
+					<td><a href="/delete/{{row[0]}}">Löschen</a></td>
+				</tr>	
+			{% endfor %}
+		</table>
+		<a>hallo</a>
+	</div>
+</div>
+
+{% endblock %}

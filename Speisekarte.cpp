@@ -2,7 +2,11 @@
 #include <string>
 #include <vector>
 #include "Speisekarte.h"
-#include "C:\SQLite\sqlite-amalgamation-3390400\sqlite3.h"
+#include "C:/SQLite/sqlite-amalgamation-3390400/sqlite3.h"
+#include <sqlite3.h>
+
+//compile with:
+//g++ createTable.cpp -l sqlite3
 
 int main()
 {
@@ -13,7 +17,7 @@ int main()
                       "BESCHREIBUNG   TEXT    NOT NULL, "
                       "PREIS          REAL    );";
 	char* messaggeError;
-	int exit = sqlite3_open("menu.db", &DB);
+	int exit = sqlite3_open("instance/menu.db", &DB);
 	exit = sqlite3_exec(DB, sqlCreate.c_str(), NULL, 0, &messaggeError);
   
 	if (exit != SQLITE_OK)
