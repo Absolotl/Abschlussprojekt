@@ -13,17 +13,17 @@ int main()
                       "BESCHREIBUNG   TEXT    NOT NULL, "
                       "PREIS          REAL    );";
 	char* messaggeError;
-    int exit = sqlite3_open("menu.db", &DB);
+	int exit = sqlite3_open("menu.db", &DB);
 	exit = sqlite3_exec(DB, sqlCreate.c_str(), NULL, 0, &messaggeError);
   
-    if (exit != SQLITE_OK)
-    {
-        std::cerr << "Error creating table: "<< messaggeError << "\n";
-        sqlite3_free(messaggeError);
-    }
-    else cout << "Table created successfully!" << std::endl;
+	if (exit != SQLITE_OK)
+	{
+		std::cerr << "Error creating table: "<< messaggeError << "\n";
+		sqlite3_free(messaggeError);
+	}
+	else cout << "Table created successfully!" << std::endl;
 
-    string sqlInsert;
+	string sqlInsert;
 	for (const auto &arr : menu)
 	{
 		sqlInsert.append("INSERT INTO MENU VALUES(");
@@ -38,14 +38,14 @@ int main()
 	}
 	//cout << sqlInsert << std::endl;
   
-    exit = sqlite3_exec(DB, sqlInsert.c_str(), NULL, 0, &messaggeError);
-    if (exit != SQLITE_OK)
-    {
-        std::cerr << "Error inserting values: "<< messaggeError << "\n";
-        sqlite3_free(messaggeError);
-    }
-    else cout << "Values created successfully!" << std::endl;
+	exit = sqlite3_exec(DB, sqlInsert.c_str(), NULL, 0, &messaggeError);
+	if (exit != SQLITE_OK)
+	{
+		std::cerr << "Error inserting values: "<< messaggeError << "\n";
+		sqlite3_free(messaggeError);
+	}
+	else cout << "Values created successfully!" << std::endl;
   
-    sqlite3_close(DB);
+	sqlite3_close(DB);
 	return 0;
 }
