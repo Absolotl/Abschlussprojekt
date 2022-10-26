@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Beilage wählen</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <p style="margin-left: 20px;">Gericht: {{task.name}}</p>
+    <div class="form">
+        <form action="/beilage/{{task.id}}" method="POST">
+            <p>Beilage auswählen:</p>
+            <div style="text-align: center; width: 100px; margin: auto;">
+                <div style="text-align: left">
+                    <input type="radio" id="Nudeln" name="beilage" value="Nudeln">
+                    <label for="Nudeln">Nudeln</label><br>
+                    <input type="radio" id="Pommes" name="beilage" value="Pommes">
+                    <label for="Pommes">Pommes</label><br>
+                    <input type="radio" id="Pizzabrot" name="beilage" value="Pizzabrot">
+                    <label for="Pizzabrot">Pizzabrot</label><br>
+                    <input type="radio" id="Salat" name="beilage" value="Salat">
+                    <label for="Salat">Salat</label><br>
+                </div>
+            </div>
+            <p><input type="submit" value="Submit"></p>
+        </form>
+    </div>
+</div>
+{% endblock %}

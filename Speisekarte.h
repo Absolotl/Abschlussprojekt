@@ -25,8 +25,8 @@ std::vector<speise> menu {
 	{9, "Filetto ai Ferri", "Filet gegrillt", 17.50f},
 	//Fisch
 	{10, "Calamari fritti", "Tintenfisch paniert", 11.50f},
-	//Nudeln
 	{11, "Calamari al sugo", "Tintenfisch, Oliven und Tomatensauce", 14.50f},
+	//Nudeln
 	{12, "Penne all arrabbiata", "hausgemachte Tomatensauce, scharf", 7.0f},
 	{13, "Penne all pesto", "Basilikum, Schafskäse und Knoblauch", 8.0f},
 	{14, "Penne Rucola", "Rucola und Tomatensauce", 7.0f},

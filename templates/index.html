@@ -15,43 +15,49 @@
 		</tr>
 		{% for row in row_data %}
 			{% if row[0] == 0 %}
-			<tr><td colspan="4" style="background-color:yellow">Für unsere kleinen Gäste</td></tr>
+				<tr><td colspan="4" style="background-color:yellow">Für unsere kleinen Gäste</td></tr>
 			{% endif %}
 			{% if row[0] == 5 %}
-			<tr><td colspan="4" style="background-color:yellow">Vom Schwein</td></tr>
+				<tr><td colspan="4" style="background-color:yellow">Vom Schwein</td></tr>
 			{% endif %}
 			{% if row[0] == 7 %}
-			<tr><td colspan="4" style="background-color:yellow">Vom Kalb</td></tr>
+				<tr><td colspan="4" style="background-color:yellow">Vom Kalb</td></tr>
 			{% endif %}
 			{% if row[0] == 9 %}
-			<tr><td colspan="4" style="background-color:yellow">Vom Rind</td>
+				<tr><td colspan="4" style="background-color:yellow">Vom Rind</td>
 			{% endif %}
 			{% if row[0] == 10 %}
-			<tr><td colspan="4" style="background-color:yellow">Fisch</td></tr>
+				<tr><td colspan="4" style="background-color:yellow">Fisch</td></tr>
 			{% endif %}
 			{% if row[0] == 12 %}
-			<tr><td colspan="4" style="background-color:yellow">Nudeln</td></tr>
+				<tr><td colspan="4" style="background-color:yellow">Nudeln</td></tr>
 			{% endif %}
 			{% if row[0] == 39 %}
-			<tr><td colspan="4" style="background-color:yellow">Pizza</td></tr>
+				<tr><td colspan="4" style="background-color:yellow">Pizza</td></tr>
 			{% endif %}
 			{% if row[0] == 101 %}
-			<tr><td colspan="4" style="background-color:yellow">Salate</td></tr>
+				<tr><td colspan="4" style="background-color:yellow">Salate</td></tr>
 			{% endif %}
 			{% if row[0] == 108 %}
-			<tr><td colspan="4" style="background-color:yellow">Omelettes</td></tr>
+				<tr><td colspan="4" style="background-color:yellow">Omelettes</td></tr>
 			{% endif %}
 			{% if row[0] == 110 %}
-			<tr><td colspan="4" style="background-color:yellow">Vorspeisen</td></tr>
+				<tr><td colspan="4" style="background-color:yellow">Vorspeisen</td></tr>
 			{% endif %}
 			{% if row[0] == 115 %}
-			<tr><td colspan="4" style="background-color:yellow">Suppen</td></tr>
+				<tr><td colspan="4" style="background-color:yellow">Suppen</td></tr>
 			{% endif %}
 			<tr>        
 				<td>{{row[1]}}</td>			
 				<td>{{row[2]}}</td>
 				<td>{{row[3]}}0 €</td>
-				<td><a href="/add/{{row[0]}}">Hinzufügen</a></td>
+				<td>
+					{% if row[0] > 4 and row[0] < 12 %}
+						<a href="/beilage/{{row[0]}}">Beilage Wählen</a>
+					{% else %}
+						<a href="/add/{{row[0]}}" >Hinzufügen</a>
+					{% endif %}
+				</td>
 			</tr>	
 		{% endfor %}
 	</table>
@@ -61,7 +67,7 @@
 				<th colspan="4">Auswahl</th>
 			</tr>
 			<tr>
-				<th>ID</th>
+				<!--th>ID</th-->
 				<th>Name</th>
 				<th>Bezeichnung</th>
 				<th>Preis</th>
@@ -69,17 +75,22 @@
 			</tr>
 			{% for row in row_data2 %}
 				<tr>
-					<td>{{row[0]}}</td>
-					<td>{{row[1]}}</td>			
-					<td>{{row[2]}}</td>
-					<td>{{row[3]}}0 €</td>
-					<td><a href="/delete/{{row[0]}}">Löschen</a></td>
+					<!--td>{{row[0]}}</td-->
+					<td>{{row[2]}}</td>			
+					<td>{{row[3]}}</td>
+					<td>{{row[4]}}0 €</td>
+					<td>
+						<a href="/delete/{{row[0]}}">Löschen</a>
+						{% if row[1] > 38 and row[1] < 101 %}
+							<br><a href="/">Extra Zutat</a>
+						{% endif %}
+					</td>
 				</tr>	
 			{% endfor %}
 		</table>
 		<div style="display: inline-block; position: fixed; margin-top: 20px; ">
 			<form action="/clear/" method="POST" style="background-color:PaleTurquoise; ">
-				<a style="margin-left: 20px">Summe der Bestellung: {{ summe }} €</a>
+				<a style="margin-left: 20px">Summe der Bestellung: {{ summe }}0 €</a>
 				<input style="margin: 20px" type="submit" value="Abschließen">
 			</form>
 		</div>
