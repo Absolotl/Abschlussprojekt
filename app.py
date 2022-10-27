@@ -1,4 +1,5 @@
 from asyncio.windows_events import NULL
+import re
 from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask import send_file
@@ -13,13 +14,17 @@ from reportlab.lib import colors
 import datetime
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/menu.db'
-db = SQLAlchemy(app)
-conn = sqlite3.connect('instance/menu.db')
-c = conn.cursor()
-c.execute("create table if not exists Choice(id INTEGER primary key autoincrement, nr Integer, name varchar(40), ingridient varchar(80), prize REAL)")
-selection = pd.read_sql_query("Select * from MENU", conn)
-selection2 = pd.read_sql_query("Select * from choice", conn)
+try:
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/menu.db'
+    db = SQLAlchemy(app)
+    conn = sqlite3.connect('instance/menu.db')
+    c = conn.cursor()
+    c.execute("create table if not exists Choice(id INTEGER primary key autoincrement, nr Integer, name varchar(40), ingridient varchar(80), prize REAL)")
+    selection = pd.read_sql_query("Select * from MENU", conn)
+    selection2 = pd.read_sql_query("Select * from choice", conn)
+except:
+    print('Error: Database doesn\'t exist!')
+    
 
 class Choice(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -40,10 +45,16 @@ def Html_table():
         summe = row[0]
         if summe == None:            
             summe = ''
-    return render_template("index.html", column_names=['Name', 'Bezeichnung', 'Preis', 'Aktion'],
-                            row_data=list(selection.values.tolist()),
-                            row_data2=list(selection2.values.tolist()),
-                            row_data3=summe, zip=zip)
+    try:            
+        return render_template("index.html", column_names=['Name', 'Bezeichnung', 'Preis', 'Aktion'],
+                                row_data=list(selection.values.tolist()),
+                                row_data2=list(selection2.values.tolist()),
+                                row_data3=summe, zip=zip)
+    except:
+        print('Error: Database doesn\'t exist!')
+        return render_template('Error.html',)                                
+
+
 
 #add
 @app.route('/add/<int:id>', methods=['POST', 'GET'])
