@@ -6,7 +6,7 @@
 #include <sqlite3.h>
 
 //compile with:
-//g++ createTable.cpp -l sqlite3
+//g++ createDatabase.cpp -l sqlite3 -o createDatabase.exe
 
 int main()
 {
