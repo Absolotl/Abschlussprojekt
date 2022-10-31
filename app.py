@@ -1,5 +1,4 @@
 from asyncio.windows_events import NULL
-import re
 from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask import send_file
@@ -72,8 +71,8 @@ def add(id):
             db.session.add(new_task)
             db.session.commit()
             return redirect('/')
-        except:
-            print("There was an issue adding your task")
+        except Exception as e:
+            print("There was an issue adding your task: " + e)
             return 'There was an issue adding your task'
 
 #add + Beilage
@@ -91,8 +90,8 @@ def Test(id):
             db.session.add(new_task)
             db.session.commit()
             return redirect('/')
-        except:
-            print("There was an issue adding your task (Beilage)")
+        except Exception as e:
+            print("There was an issue adding your task (Beilage): " + e)
             return 'There was an issue adding your task'
     else:
         c.execute('select * from menu where id = ' + str(id))
