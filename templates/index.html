@@ -14,37 +14,37 @@
 			{% endfor %}
 		</tr>
 		{% for row in row_data %}
-			{% if row[0] == 0 %}
+			{% if row[0] == 1 %}
 				<tr><td colspan="4" style="background-color:yellow">Für unsere kleinen Gäste</td></tr>
 			{% endif %}
-			{% if row[0] == 5 %}
+			{% if row[0] == 6 %}
 				<tr><td colspan="4" style="background-color:yellow">Vom Schwein</td></tr>
 			{% endif %}
-			{% if row[0] == 7 %}
+			{% if row[0] == 8 %}
 				<tr><td colspan="4" style="background-color:yellow">Vom Kalb</td></tr>
 			{% endif %}
-			{% if row[0] == 9 %}
+			{% if row[0] == 10 %}
 				<tr><td colspan="4" style="background-color:yellow">Vom Rind</td>
 			{% endif %}
-			{% if row[0] == 10 %}
+			{% if row[0] == 11 %}
 				<tr><td colspan="4" style="background-color:yellow">Fisch</td></tr>
 			{% endif %}
-			{% if row[0] == 12 %}
+			{% if row[0] == 13 %}
 				<tr><td colspan="4" style="background-color:yellow">Nudeln</td></tr>
 			{% endif %}
-			{% if row[0] == 39 %}
+			{% if row[0] == 40 %}
 				<tr><td colspan="4" style="background-color:yellow">Pizza</td></tr>
 			{% endif %}
-			{% if row[0] == 101 %}
+			{% if row[0] == 102 %}
 				<tr><td colspan="4" style="background-color:yellow">Salate</td></tr>
 			{% endif %}
-			{% if row[0] == 108 %}
+			{% if row[0] == 109 %}
 				<tr><td colspan="4" style="background-color:yellow">Omelettes</td></tr>
 			{% endif %}
-			{% if row[0] == 110 %}
+			{% if row[0] == 111 %}
 				<tr><td colspan="4" style="background-color:yellow">Vorspeisen</td></tr>
 			{% endif %}
-			{% if row[0] == 115 %}
+			{% if row[0] == 116 %}
 				<tr><td colspan="4" style="background-color:yellow">Suppen</td></tr>
 			{% endif %}
 			<tr>        
@@ -52,7 +52,7 @@
 				<td>{{row[2]}}</td>
 				<td>{{row[3]}}0 €</td>
 				<td>
-					{% if row[0] > 4 and row[0] < 12 %}
+					{% if row[0] > 5 and row[0] <= 12 %}
 						<a href="/beilage/{{row[0]}}">Beilage Wählen</a>
 					{% else %}
 						<a href="/add/{{row[0]}}" >Hinzufügen</a>
