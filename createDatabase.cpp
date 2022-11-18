@@ -29,10 +29,12 @@ int main()
 	else cout << "Table created successfully!" << std::endl;
 
 	string sqlInsert;
+	int i = 1;
 	for (const auto &arr : menu)
 	{
 		sqlInsert.append("INSERT INTO MENU VALUES(");
-		sqlInsert.append(std::to_string(arr.ID));
+		//sqlInsert.append(std::to_string(arr.ID));
+		sqlInsert.append(std::to_string(i++));
 		sqlInsert.append(", '");
 		sqlInsert.append(arr.Bezeichnung);
 		sqlInsert.append("', '");
